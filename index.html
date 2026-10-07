@@ -1,0 +1,346 @@
+<title>LockVerse Privacy Policy</title>
+<style>
+  /* layout: centered single-column reading column with a sticky top bar and a collapsible in-page table of contents */
+  :root{
+    --bg:#F7F7F5; --surface:#FFFFFF; --fg:#1C2027; --muted:#5B6270; --faint:#8A90A0;
+    --border:#E4E4E0; --accent:#0D9488; --accent-fg:#FFFFFF; --accent-soft:#E6F5F3;
+    --indigo:#4F46E5; --indigo-soft:#EEEDFC; --code-bg:#F0EFEC;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#12131A; --surface:#1A1C26; --fg:#EAEBF0; --muted:#A4A8B6; --faint:#6B7080;
+      --border:#2A2D3A; --accent:#2DD4BF; --accent-fg:#06211E; --accent-soft:#113531;
+      --indigo:#818CF8; --indigo-soft:#1E1C3A; --code-bg:#22242F; color-scheme:dark;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#12131A; --surface:#1A1C26; --fg:#EAEBF0; --muted:#A4A8B6; --faint:#6B7080;
+    --border:#2A2D3A; --accent:#2DD4BF; --accent-fg:#06211E; --accent-soft:#113531;
+    --indigo:#818CF8; --indigo-soft:#1E1C3A; --code-bg:#22242F; color-scheme:dark;
+  }
+
+  * { box-sizing:border-box; }
+  body{ background:var(--bg); color:var(--fg); font-family:'Source Sans 3', ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
+  h1,h2,h3{ font-family:'Fraunces', Georgia, 'Times New Roman', serif; color:var(--fg); font-weight:600; text-wrap:balance; }
+  a{ color:var(--accent); }
+  code, .mono{ font-family:'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace; }
+
+  .topbar{
+    position:sticky; top:env(safe-area-inset-top,0px); z-index:20;
+    background:color-mix(in srgb, var(--surface) 92%, transparent);
+    backdrop-filter:blur(10px); border-bottom:1px solid var(--border);
+  }
+  .topbar-inner{
+    max-width:920px; margin:0 auto; display:flex; align-items:center; gap:12px;
+    padding:14px clamp(16px,4vw,28px);
+  }
+  .mark{
+    width:34px; height:34px; border-radius:10px; flex:none;
+    background:linear-gradient(145deg, var(--accent), var(--indigo));
+    display:flex; align-items:center; justify-content:center;
+  }
+  .mark svg{ width:18px; height:18px; }
+  .topbar-text{ display:flex; flex-direction:column; gap:1px; min-width:0; }
+  .topbar-text strong{ font-size:14.5px; letter-spacing:0.01em; }
+  .topbar-text span{ font-size:12px; color:var(--muted); }
+  .topbar-cta{
+    margin-left:auto; font-size:12.5px; color:var(--muted); white-space:nowrap;
+  }
+
+  .shell{ max-width:920px; margin:0 auto; padding:0 clamp(16px,4vw,28px) 80px; }
+  .layout{ display:grid; grid-template-columns:200px minmax(0,1fr); gap:48px; align-items:start; }
+  @media (max-width:760px){ .layout{ grid-template-columns:1fr; } }
+
+  .toc{
+    position:sticky; top:calc(env(safe-area-inset-top,0px) + 78px);
+    padding:18px 0 18px 0; border-right:1px solid var(--border);
+  }
+  @media (max-width:760px){
+    .toc{ position:static; border-right:none; border:1px solid var(--border); border-radius:14px; padding:14px 16px; background:var(--surface); margin-top:22px; }
+  }
+  .toc-title{ font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--faint); margin:0 0 10px; padding-right:16px; }
+  .toc ol{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:7px; counter-reset:toc; }
+  .toc li{ counter-increment:toc; }
+  .toc a{
+    text-decoration:none; color:var(--muted); font-size:13.5px; line-height:1.4;
+    display:flex; gap:8px;
+  }
+  .toc a:hover{ color:var(--fg); }
+  .toc a::before{
+    content:counter(toc, decimal-leading-zero); color:var(--faint); font-family:'IBM Plex Mono',monospace;
+    font-size:11px; padding-top:2px; flex:none;
+  }
+
+  .hero{ padding:40px 0 8px; }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:7px; font-size:12px; font-weight:600;
+    letter-spacing:0.06em; text-transform:uppercase; color:var(--accent);
+    background:var(--accent-soft); padding:5px 12px; border-radius:999px; margin-bottom:18px;
+  }
+  .hero h1{ font-size:clamp(28px,4.2vw,40px); line-height:1.08; margin:0 0 14px; }
+  .hero p.lede{ font-size:16px; color:var(--muted); line-height:1.65; max-width:60ch; margin:0 0 18px; }
+  .meta-row{ display:flex; flex-wrap:wrap; gap:10px 22px; font-size:13px; color:var(--muted); padding-bottom:28px; border-bottom:1px solid var(--border); }
+  .meta-row b{ color:var(--fg); font-weight:600; }
+
+  section.doc{ padding-top:40px; }
+  section.doc h2{ font-size:21px; margin:0 0 6px; scroll-margin-top:90px; display:flex; align-items:baseline; gap:10px;}
+  section.doc h2 .num{ font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--faint); font-weight:500; }
+  section.doc h3{ font-size:16px; margin:22px 0 8px; }
+  section.doc p{ font-size:15px; line-height:1.75; color:var(--fg); margin:0 0 14px; }
+  section.doc p.muted{ color:var(--muted); font-size:13.5px; }
+  section.doc ul{ margin:0 0 14px; padding-left:20px; }
+  section.doc li{ font-size:15px; line-height:1.7; margin-bottom:6px; }
+  section.doc + section.doc{ border-top:1px solid var(--border); }
+
+  .callout{
+    display:flex; gap:12px; background:var(--indigo-soft); border:1px solid color-mix(in srgb, var(--indigo) 30%, var(--border));
+    border-radius:14px; padding:16px 18px; margin:18px 0;
+  }
+  .callout svg{ flex:none; width:19px; height:19px; margin-top:2px; color:var(--indigo); }
+  .callout p{ margin:0; font-size:14px; line-height:1.6; color:var(--fg); }
+
+  .table-wrap{ overflow-x:auto; border:1px solid var(--border); border-radius:14px; margin:10px 0 20px; }
+  table{ width:100%; border-collapse:collapse; min-width:560px; background:var(--surface); }
+  thead th{
+    text-align:left; font-size:11px; letter-spacing:0.05em; text-transform:uppercase; color:var(--muted);
+    padding:12px 16px; border-bottom:1px solid var(--border); background:color-mix(in srgb, var(--surface) 70%, var(--bg));
+  }
+  tbody td{ padding:13px 16px; font-size:13.5px; line-height:1.55; vertical-align:top; border-bottom:1px solid var(--border); }
+  tbody tr:last-child td{ border-bottom:none; }
+  td.perm{ font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--indigo); white-space:nowrap; }
+  td.badge-cell{ white-space:nowrap; }
+  .badge{
+    display:inline-block; font-size:11px; font-weight:600; padding:3px 9px; border-radius:999px;
+  }
+  .badge.off{ background:var(--accent-soft); color:var(--accent); }
+  .badge.local{ background:var(--indigo-soft); color:var(--indigo); }
+
+  .summary-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin:14px 0 22px; }
+  @media (max-width:560px){ .summary-grid{ grid-template-columns:1fr; } }
+  .summary-card{ border:1px solid var(--border); background:var(--surface); border-radius:14px; padding:16px 18px; }
+  .summary-card .k{ font-size:11px; letter-spacing:0.06em; text-transform:uppercase; color:var(--faint); margin-bottom:6px; }
+  .summary-card .v{ font-size:14.5px; font-weight:600; line-height:1.4; }
+  .summary-card .v.yes{ color:var(--accent); }
+
+  .contact-card{
+    display:flex; flex-wrap:wrap; gap:18px; align-items:center; justify-content:space-between;
+    background:linear-gradient(135deg, var(--accent-soft), var(--indigo-soft));
+    border:1px solid var(--border); border-radius:18px; padding:22px 24px; margin-top:12px;
+  }
+  .contact-card .ct h3{ margin:0 0 4px; font-size:17px; }
+  .contact-card .ct p{ margin:0; font-size:13.5px; color:var(--muted); }
+  .copy-btn{
+    display:inline-flex; align-items:center; gap:8px; background:var(--fg); color:var(--bg);
+    border:none; padding:11px 18px; border-radius:999px; font-size:13.5px; font-weight:600;
+    cursor:pointer; font-family:inherit; white-space:nowrap;
+  }
+  .copy-btn:active{ transform:scale(0.98); }
+
+  footer{ padding:36px 0 10px; border-top:1px solid var(--border); margin-top:24px; }
+  footer p{ font-size:12.5px; color:var(--faint); line-height:1.6; margin:0 0 6px; }
+</style>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="mark">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 10V7a6 6 0 1 1 12 0v3" stroke="white" stroke-width="2" stroke-linecap="round"/><rect x="4" y="10" width="16" height="11" rx="3" fill="white"/></svg>
+    </div>
+    <div class="topbar-text">
+      <strong>LockVerse</strong>
+      <span>Privacy Policy</span>
+    </div>
+    <div class="topbar-cta">Effective October 7, 2026</div>
+  </div>
+</div>
+
+<div class="shell">
+  <div class="hero">
+    <span class="eyebrow">App Lock &amp; Vault · com.lockverse.applock</span>
+    <h1>LockVerse Privacy Policy</h1>
+    <p class="lede">LockVerse locks apps and hides files on your own device. This page explains, permission by permission, what that requires, what never leaves your phone, and the little that does.</p>
+    <div class="meta-row">
+      <span>Effective date: <b>October 7, 2026</b></span>
+      <span>Last updated: <b>October 7, 2026</b></span>
+      <span>Developer: <b>LockVerse</b></span>
+      <span>Contact: <b>sktechdev00@gmail.com</b></span>
+    </div>
+  </div>
+
+  <div class="layout">
+    <nav class="toc" aria-label="Table of contents">
+      <p class="toc-title">On this page</p>
+      <ol>
+        <li><a href="#summary">Summary</a></li>
+        <li><a href="#collect">Information we collect</a></li>
+        <li><a href="#permissions">Permissions explained</a></li>
+        <li><a href="#vault">Vault &amp; intruder photos</a></li>
+        <li><a href="#storage">Storage &amp; security</a></li>
+        <li><a href="#backup">Backup &amp; export</a></li>
+        <li><a href="#sharing">Sharing &amp; third parties</a></li>
+        <li><a href="#retention">Retention &amp; deletion</a></li>
+        <li><a href="#children">Children's privacy</a></li>
+        <li><a href="#rights">Your rights &amp; choices</a></li>
+        <li><a href="#changes">Changes to this policy</a></li>
+        <li><a href="#contact">Contact us</a></li>
+      </ol>
+    </nav>
+
+    <div>
+      <section class="doc" id="summary">
+        <h2><span class="num">01</span>Summary</h2>
+        <p>LockVerse is an on-device app locker and private vault. It is built so that your PIN, pattern, biometric data, hidden photos, notes, contacts, and passwords are processed and encrypted locally, inside LockVerse's own private storage on your device. LockVerse does not have a server, does not require an account, and does not send your personal or vault content anywhere.</p>
+        <div class="summary-grid">
+          <div class="summary-card"><div class="k">Account required</div><div class="v">No</div></div>
+          <div class="summary-card"><div class="k">Vault content leaves device</div><div class="v">No</div></div>
+          <div class="summary-card"><div class="k">Ads or analytics SDKs</div><div class="v">None included</div></div>
+          <div class="summary-card"><div class="k">Data sold to third parties</div><div class="v yes">Never</div></div>
+        </div>
+        <div class="callout">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M12 8v5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="16" r="1" fill="currentColor"/></svg>
+          <p>The only network activity in LockVerse comes from Google Play's own in‑app update and in‑app review prompts, which talk directly to Google Play services under Google's Privacy Policy — not to LockVerse. LockVerse's own code makes no network calls and has nowhere to send data even if it wanted to.</p>
+        </div>
+      </section>
+
+      <section class="doc" id="collect">
+        <h2><span class="num">02</span>Information we collect</h2>
+        <h3>Information you create inside the app</h3>
+        <ul>
+          <li><b>Unlock secret</b> — the PIN or pattern you set to open LockVerse and your locked apps.</li>
+          <li><b>Biometric unlock</b> — if you turn on fingerprint/face unlock, authentication is handled entirely by Android's own Biometric framework. LockVerse never receives your fingerprint or face data; it only receives a yes/no result from the operating system.</li>
+          <li><b>Vault content</b> — photos, videos, notes, contacts, and saved logins that you choose to hide inside LockVerse's Vault.</li>
+          <li><b>App selections &amp; settings</b> — which apps you choose to lock, your chosen theme, language, and Smart Lock preferences (trusted Wi‑Fi networks or Bluetooth devices you add yourself).</li>
+          <li><b>Intruder snapshots</b> — a front‑camera photo and timestamp captured automatically when someone enters the wrong PIN/pattern, if you have this feature turned on.</li>
+        </ul>
+        <h3>Information generated automatically on your device</h3>
+        <ul>
+          <li>The name of the app currently in the foreground, read continuously in the background so LockVerse can show its lock screen the instant a locked app opens.</li>
+          <li>The list of apps installed on your device, so you can pick which ones to protect.</li>
+        </ul>
+        <p class="muted">None of the above is collected onto any server. It is written to local, encrypted, app-private storage on your device and is never transmitted by LockVerse.</p>
+      </section>
+
+      <section class="doc" id="permissions">
+        <h2><span class="num">03</span>Permissions explained</h2>
+        <p>Android requires apps to declare every capability they use. The table below lists every permission LockVerse requests, in plain language.</p>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Permission</th><th>What it's for</th><th>Leaves device?</th></tr></thead>
+            <tbody>
+              <tr><td class="perm">PACKAGE_USAGE_STATS</td><td>Detects which app is currently open so the lock screen can appear over apps you've protected. This is the core mechanism app lockers use on Android.</td><td class="badge-cell"><span class="badge off">Stays on device</span></td></tr>
+              <tr><td class="perm">SYSTEM_ALERT_WINDOW</td><td>Draws the LockVerse lock screen on top of the app you just opened.</td><td class="badge-cell"><span class="badge off">Stays on device</span></td></tr>
+              <tr><td class="perm">CAMERA</td><td>Takes a front‑camera photo after a failed unlock attempt, only if you enable Intruder Selfie, and lets you take a photo to save directly into your Vault.</td><td class="badge-cell"><span class="badge off">Stays on device</span></td></tr>
+              <tr><td class="perm">USE_BIOMETRIC</td><td>Lets you unlock LockVerse with your fingerprint or face via Android's own Biometric prompt.</td><td class="badge-cell"><span class="badge off">Handled by Android</span></td></tr>
+              <tr><td class="perm">ACCESS_FINE_LOCATION / ACCESS_COARSE_LOCATION</td><td>Used only to read the name (SSID) of the Wi‑Fi network you're currently connected to, so you can mark it as a trusted network for Smart Lock. Android requires location permission to read Wi‑Fi names; LockVerse does not track, log, or store your GPS location.</td><td class="badge-cell"><span class="badge off">Stays on device</span></td></tr>
+              <tr><td class="perm">BLUETOOTH_CONNECT / BLUETOOTH</td><td>Lets you pick an already‑paired Bluetooth device (e.g. your watch) to trust for Smart Lock.</td><td class="badge-cell"><span class="badge off">Stays on device</span></td></tr>
+              <tr><td class="perm">ACCESS_NETWORK_STATE</td><td>Notifies LockVerse when your Wi‑Fi connection changes, so Smart Lock can react.</td><td class="badge-cell"><span class="badge off">Stays on device</span></td></tr>
+              <tr><td class="perm">POST_NOTIFICATIONS</td><td>Shows the persistent "protection active" notification and lock alerts.</td><td class="badge-cell"><span class="badge off">Stays on device</span></td></tr>
+              <tr><td class="perm">FOREGROUND_SERVICE / FOREGROUND_SERVICE_SPECIAL_USE</td><td>Keeps the protection service running reliably so locked apps stay locked.</td><td class="badge-cell"><span class="badge off">Stays on device</span></td></tr>
+              <tr><td class="perm">RECEIVE_BOOT_COMPLETED</td><td>Restarts protection automatically after you restart your phone.</td><td class="badge-cell"><span class="badge off">Stays on device</span></td></tr>
+              <tr><td class="perm">REQUEST_IGNORE_BATTERY_OPTIMIZATIONS</td><td>Asks you, optionally, to exempt LockVerse from battery optimization so phone manufacturers don't kill the protection service.</td><td class="badge-cell"><span class="badge off">Stays on device</span></td></tr>
+              <tr><td class="perm">Device Administrator</td><td>Optional. Prevents LockVerse from being force‑stopped or uninstalled without first unlocking it, as an anti‑tamper measure you can turn on in Settings.</td><td class="badge-cell"><span class="badge off">Stays on device</span></td></tr>
+              <tr><td class="perm">REQUEST_DELETE_PACKAGES</td><td>Lets LockVerse open Android's own uninstall confirmation for itself after you unlock it, instead of being removable while locked.</td><td class="badge-cell"><span class="badge off">Stays on device</span></td></tr>
+              <tr><td class="perm">VIBRATE</td><td>Haptic feedback on taps, successful unlocks, and errors.</td><td class="badge-cell"><span class="badge off">Stays on device</span></td></tr>
+              <tr><td class="perm">INTERNET</td><td>Used only by Google Play's in‑app update and in‑app review prompts (Google Play Core library). LockVerse's own code does not open network connections.</td><td class="badge-cell"><span class="badge local">To Google Play only</span></td></tr>
+              <tr><td class="perm">AD_ID (Advertising ID)</td><td>Declared automatically by an included Google Play library. LockVerse contains no ad network and does not read, use, or share your Advertising ID for advertising, profiling, or tracking of any kind.</td><td class="badge-cell"><span class="badge off">Not used</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="doc" id="vault">
+        <h2><span class="num">04</span>Vault &amp; intruder photos</h2>
+        <p>Files you hide in the Vault (photos, videos, notes, contacts, saved logins) are encrypted before they are written to disk and can only be decrypted inside LockVerse, after you unlock it. LockVerse never scans, indexes, or uploads Vault content, and has no feature that transmits it anywhere.</p>
+        <p>If you enable <b>Intruder Selfie</b>, a photo is taken with the front camera after a wrong PIN/pattern attempt and stored, encrypted, in the Intruder Log inside the app. These photos stay on your device until you delete them from the Intruder Log; LockVerse never sends them off the device.</p>
+      </section>
+
+      <section class="doc" id="storage">
+        <h2><span class="num">05</span>Storage &amp; security</h2>
+        <ul>
+          <li>Vault files and the app database are encrypted at rest using AES‑256 (SQLCipher for the database, AES‑GCM for files), with keys generated and held inside the Android Keystore — hardware‑backed on supported devices — so the keys themselves never leave secure hardware.</li>
+          <li>LockVerse's app data is excluded from Android's automatic cloud backup (<code>allowBackup="false"</code>), so your vault and settings are not copied to any backup service without your own explicit export.</li>
+          <li>Biometric unlock is verified by the Android operating system itself; LockVerse only ever receives a success/failure result, never raw biometric data.</li>
+        </ul>
+      </section>
+
+      <section class="doc" id="backup">
+        <h2><span class="num">06</span>Backup &amp; export</h2>
+        <p>LockVerse can create a portable backup file (<code>.lvbak</code>) of your Vault on request. You choose where it's saved — local storage, an SD card, or a cloud folder you pick through Android's own file picker — and you choose the backup password. The backup is encrypted with a key derived from that password before it is written; LockVerse itself never sees, stores, or transmits that file. If you lose the backup password, the backup cannot be opened by you or by us.</p>
+      </section>
+
+      <section class="doc" id="sharing">
+        <h2><span class="num">07</span>Sharing &amp; third parties</h2>
+        <p>LockVerse does not sell personal data, does not share it with advertisers or data brokers, and does not embed any advertising or analytics SDK. The only third‑party service involved is:</p>
+        <ul>
+          <li><b>Google Play Core (In‑App Update &amp; In‑App Review)</b> — used to prompt you, through Google's own UI, to update LockVerse or leave a Play Store review. This communicates directly between your device and Google Play; LockVerse does not route this traffic or see its contents. See Google's Privacy Policy at <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>.</li>
+        </ul>
+        <p>LockVerse may disclose information if required to comply with a valid legal obligation, but since no personal or vault data is collected by LockVerse in the first place, there is nothing on our side to disclose.</p>
+      </section>
+
+      <section class="doc" id="retention">
+        <h2><span class="num">08</span>Retention &amp; deletion</h2>
+        <ul>
+          <li>Vault files, notes, contacts, logins, and intruder photos are kept until you delete them inside the app.</li>
+          <li>Uninstalling LockVerse permanently deletes its entire private storage, including the Vault, settings, and Intruder Log, in line with standard Android app removal — because this data was never copied anywhere else.</li>
+          <li>Backup files you exported yourself live wherever you saved them and follow the retention of that storage location, since LockVerse does not control or retain a copy.</li>
+        </ul>
+      </section>
+
+      <section class="doc" id="children">
+        <h2><span class="num">09</span>Children's privacy</h2>
+        <p>LockVerse is a general‑audience utility and is not directed at children under 13 (or the minimum age required by local law). LockVerse does not knowingly collect personal information from children, and in any case processes data locally on-device rather than collecting it onto a server. If you believe a child has provided personal information through this app, contact us and we will assist in addressing it.</p>
+      </section>
+
+      <section class="doc" id="rights">
+        <h2><span class="num">10</span>Your rights &amp; choices</h2>
+        <ul>
+          <li><b>Access &amp; delete</b> — everything LockVerse stores about you lives in the app itself; you can view, export, or delete it at any time from within the app, or remove all of it at once by uninstalling.</li>
+          <li><b>Permissions</b> — every permission above is optional for the features it supports and can be revoked at any time in Android Settings → Apps → LockVerse → Permissions; the corresponding feature (e.g. Intruder Selfie, Smart Lock) will simply stop working until it's granted again.</li>
+          <li><b>Regional rights</b> — if data‑protection laws such as the GDPR, UK GDPR, or CCPA/CPRA apply to you, you may still exercise rights of access, correction, deletion, and portability; because LockVerse holds no copy of your data outside your own device, these requests are fulfilled directly through the app's own delete/export controls, or by contacting us for guidance.</li>
+        </ul>
+      </section>
+
+      <section class="doc" id="changes">
+        <h2><span class="num">11</span>Changes to this policy</h2>
+        <p>We may update this Privacy Policy as LockVerse changes. Material changes will be reflected by updating the "Last updated" date at the top of this page. Continued use of LockVerse after a change constitutes acceptance of the revised policy. We encourage you to review this page periodically.</p>
+      </section>
+
+      <section class="doc" id="contact">
+        <h2><span class="num">12</span>Contact us</h2>
+        <p>Questions about this Privacy Policy or how LockVerse handles permissions and data can be sent to:</p>
+        <div class="contact-card">
+          <div class="ct">
+            <h3>sktechdev00@gmail.com</h3>
+            <p>LockVerse · App Lock &amp; Vault — developer support</p>
+          </div>
+          <button class="copy-btn" id="copyBtn" type="button">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" width="15" height="15"><rect x="9" y="9" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M5 15V6a1 1 0 0 1 1-1h9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            <span id="copyLabel">Copy email</span>
+          </button>
+        </div>
+      </section>
+
+      <footer>
+        <p>This policy covers the LockVerse Android application (package <code>com.lockverse.applock</code>) only.</p>
+        <p>© 2026 LockVerse. All rights reserved.</p>
+      </footer>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function(){
+    var btn = document.getElementById('copyBtn');
+    var label = document.getElementById('copyLabel');
+    if(!btn) return;
+    btn.addEventListener('click', function(){
+      var email = 'sktechdev00@gmail.com';
+      function done(ok){
+        label.textContent = ok ? 'Copied!' : email;
+        setTimeout(function(){ label.textContent = 'Copy email'; }, 1600);
+      }
+      try{
+        navigator.clipboard.writeText(email).then(function(){ done(true); }).catch(function(){ done(false); });
+      }catch(e){ done(false); }
+    });
+  })();
+</script>
